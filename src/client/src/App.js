@@ -4,7 +4,7 @@ function App() {
 
 
   //contains backend data 
-  const [backendData, setBackendData] = useState({})
+  const [backendData, setBackendData] = useState([{}])
 
   //fetch backend API
   useEffect(()=>{
@@ -19,7 +19,16 @@ function App() {
     //empty "[]" is so this only runs in first render"
   },[])
   return (
-    <div>App</div>
+    <div>
+      {(typeof backendData.users === "undefined") ? (
+        <p>Loading...</p>
+      ) : (
+        backendData.users.map((user,i)=>(
+          <p key={i}>{user}</p>
+        ))
+      )
+      }
+    </div>
   )
 }
 
